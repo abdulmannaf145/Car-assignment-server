@@ -45,15 +45,6 @@ async function run() {
         const bookedCollection = database.collection('booked');
         const allProductCollection = database.collection('all_product');
         const reviewCollection = database.collection('review');
-
-        // app.get('/appointments', verifyToken, async (req, res) => {
-        //     const email = req.query.email;
-        //     const date = req.query.date;
-        //     const query = { email: email, date: date }
-        //     const cursor = appointmentsCollection.find(query);
-        //     const appointments = await cursor.toArray();
-        //     res.json(appointments);
-        // })
         app.get("/usersOrder", verifyToken, async (req, res) => {
         const email = req.query.email;
         const query = { email: email };
@@ -67,11 +58,6 @@ async function run() {
         const result = await bookedCollection.deleteOne(query);
         res.json(result);
         });
-
-
-
-
-
         app.post('/review', async (req, res) => {
             const appointment = req.body;
             const result = await reviewCollection.insertOne(appointment);
