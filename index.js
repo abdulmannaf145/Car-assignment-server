@@ -77,17 +77,17 @@ async function run() {
             const result = await reviewCollection.insertOne(appointment);
             res.json(result)
         });
+        
+      app.get('/review', async (req, res) => {
+        const cursor = reviewCollection.find({});
+        const user = await cursor.toArray();
+        res.send(user);
+      });
         app.post('/bookedCar', async (req, res) => {
             const appointment = req.body;
             const result = await bookedCollection.insertOne(appointment);
             res.json(result)
         });
-        app.get('/review', async (req, res) => {
-            const cursor = reviewCollection.find({});
-            const user = await cursor.toArray();
-            res.send(user);
-        })
-        
         app.get('/bookedCar', async (req, res) => {
             const cursor = bookedCollection.find({});
             const user = await cursor.toArray();
